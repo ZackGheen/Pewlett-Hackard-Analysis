@@ -1,7 +1,7 @@
 # Pewlett-Hackard-Analysis
 
 Pewlett Hackard Analysis
-Overview of Project
+## Overview of Project
 The Goal of this project for me and Bobby was to determine the number of retiring employees per title, and identify employees who are eligible to participate in a mentorship program. Then, we were tasked with writing a report that summarizes our analysis and helps prepare Bobby’s manager for the “silver tsunami” as many current employees reach retirement age.
 
 Deliverable 1: The Number of Retiring Employees by Title
@@ -14,12 +14,12 @@ Data Tools: PostgreSQL, pgAdmin
 
 
 
-Deliverable 1: The Number of Retiring Employees by Title
+## Deliverable 1: The Number of Retiring Employees by Title
 Deliverable Requirements:
-Using the ERD you created in this module as a reference and your knowledge of SQL queries, create a Retirement Titles table that holds all the titles of current employees who were born between January 1, 1952 and December 31, 1955. Because some employees may have multiple titles in the database—for example, due to promotions—you’ll need to use the DISTINCT ON statement to create a table that contains the most recent title of each employee. Then, use the COUNT() function to create a final table that has the number of retirement-age employees by most recent job title.
+Using our ERD we created a Retirement Titles table that holds all the titles of current employees who were born between January 1, 1952 and December 31, 1955. Because some employees may have multiple titles in the database—for example, due to promotions; we needed to use the DISTINCT ON statement to create a table that contains the most recent title of each employee. Then, use the COUNT() function to create a final table that has the number of retirement-age employees by most recent job title.
 
-A query is written and executed to create a Retirement Titles table for employees who are born between January 1, 1952 and December 31, 1955
-The Retirement Titles table is exported as retirement_titles.csv
+we wrote and executed a query to create a Retirement Titles table for employees who are born between January 1, 1952 and December 31, 1955
+The Retirement Titles table is exported as retirement_titles.csv.
 ​A query is written and executed to create a Unique Titles table that contains the employee number, first and last name, and most recent title.
 The Unique Titles table is exported as unique_titles.csv
 A query is written and executed to create a Retiring Titles table that contains the number of titles filled by employees who are retiring.
@@ -28,7 +28,22 @@ Results with detail analysis:
 A query is written and executed to create a Retirement Titles table for employees who are born between January 1, 1952 and December 31, 1955.
 Image with SQL, pgAdmin & QuickDBD Code below.
 
-Code and Image
+The following is a code snippet showing the process and code used to execute our queries.
+SELECT e.emp_no,
+       e.first_name,
+       e.last_name,
+       t.title,
+       t.from_date,
+       t.to_date
+INTO retirement_titles
+FROM employees as e
+INNER JOIN titles as t
+ON (e.emp_no = t.emp_no)
+WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+order by e.emp_no;
+
+The Retirement Titles table is exported as retirement_titles.csv
+Exported retirement_titles.csv
 
 -- Follow the instructions below to complete Deliverable 1.
 SELECT e.emp_no,
@@ -43,19 +58,10 @@ INNER JOIN titles as t
 ON (e.emp_no = t.emp_no)
 WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
 order by e.emp_no;
-name-of-you-image
-
-The Retirement Titles table is exported as retirement_titles.csv
-Exported retirement_titles.csv Image below.
-
-Code and Image
-
-name-of-you-image
 
 ​*A query is written and executed to create a Unique Titles table that contains the employee number, first and last name, and most recent title.
 Image with SQL, pgAdmin & QuickDBD Code below.
 
-Code and Image
 
 -- Use Dictinct with Orderby to remove duplicate rows
 SELECT DISTINCT ON (emp_no) emp_no,
@@ -65,19 +71,13 @@ title
 INTO unique_titles
 FROM retirement_titles
 ORDER BY emp_no, title DESC;
-name-of-you-image
 
 The Unique Titles table is exported as unique_titles.csv
-Exported unique_titles.csv Image below.
+Exported unique_titles.csv
 
-Code and Image
-
-name-of-you-image
 
 A query is written and executed to create a Retiring Titles table that contains the number of titles filled by employees who are retiring.
 Image with SQL, pgAdmin & QuickDBD Code below.
-
-Code and Image
 
 -- Retrieve the number of employees by their most recent job title who are about to retire.
 SELECT COUNT(ut.emp_no),
