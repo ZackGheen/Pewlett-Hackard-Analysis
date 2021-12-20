@@ -45,19 +45,7 @@ order by e.emp_no;
 The Retirement Titles table is exported as retirement_titles.csv
 Exported retirement_titles.csv
 
--- Follow the instructions below to complete Deliverable 1.
-SELECT e.emp_no,
-       e.first_name,
-       e.last_name,
-       t.title,
-       t.from_date,
-       t.to_date
-INTO retirement_titles
-FROM employees as e
-INNER JOIN titles as t
-ON (e.emp_no = t.emp_no)
-WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
-order by e.emp_no;
+
 
 ​*A query is written and executed to create a Unique Titles table that contains the employee number, first and last name, and most recent title.
 Image with SQL, pgAdmin & QuickDBD Code below.
@@ -91,11 +79,7 @@ name-of-you-image
 The Retiring Titles table is exported as retiring_titles.csv
 Exported retiring_titles.csv Image below.
 
-Code and Image
-
-name-of-you-image
-
-Deliverable 2: The Employees Eligible for the Mentorship Program
+## Deliverable 2: The Employees Eligible for the Mentorship Program
 Deliverable Requirements:
 Using the ERD you created in this module as a reference and your knowledge of SQL queries, create a mentorship-eligibility table that holds the current employees who were born between January 1, 1965 and December 31, 1965.
 
@@ -103,9 +87,7 @@ A query is written and executed to create a Mentorship Eligibility table for cur
 The Mentorship Eligibility table is exported and saved as mentorship_eligibilty.csv
 Results with detail analysis:
 A query is written and executed to create a Mentorship Eligibility table for current employees who were born between January 1, 1965 and December 31, 1965.
-Image with SQL, pgAdmin & QuickDBD Code below.
-
-Code and Image
+Image with SQL, pgAdmin & QuickDBD.
 
 -- Write a query to create a Mentorship Eligibility table that holds the employees who are eligible to participate in a mentorship program.
 SELECT DISTINCT ON(e.emp_no) e.emp_no, 
@@ -126,20 +108,10 @@ ORDER BY e.emp_no;
 name-of-you-image
 
 The Mentorship Eligibility table is exported and saved as mentorship_eligibilty.csv"
-Exported retiring_titles.csv Image below.
+Exported retiring_titles.csv
 
-Code and Image
 
-name-of-you-image
-
-Deliverable 3: A written report on the employee database analysis
-The analysis should contain the following:
-Overview of the analysis
-Explain the purpose of this analysis.:
-
-In this deliverable, Bobby was tasked to determine the number of retiring employees per title, and identify employees who are eligible to participate in a mentorship program. Then, you’ll write a report that summarizes your analysis and helps prepare Bobby’s manager for the “silver tsunami” as many current employees reach retirement age.
-
-Results
+## Results
 Provide a bulleted list with four major points from the two analysis deliverables. Use images as support where needed:
 
 From the finding of the eligible retirees, High Percentage of the workforce could retire at any given time.
@@ -152,9 +124,9 @@ From the job titles of the eligible retirees, the breakdown is below.
 1,761 Assistant Engineer
 Image Below
 
-name-of-you-image
 
-Summary
+## Summary
+
 When Looking at the upcoming "Silver Tsunami" and trying to decideif Pewlett Hackard is in a good postion to handle it we can break dwon the question into two questions and answers.
 
 1) How many roles will need to be filled as the "silver tsunami" begins to make an impact?.
@@ -164,5 +136,3 @@ When Looking at the upcoming "Silver Tsunami" and trying to decideif Pewlett Hac
 2) Are there enough qualified, retirement-ready employees in the departments to mentor the next generation of Pewlett Hackard employees?
 
 No, we have 1,940 employees who are eligible to participate in a mentorship program.
-
-name-of-you-image
